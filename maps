@@ -1,0 +1,59 @@
+map code :- 
+#include<bits/stdc++.h>
+#include <iostream>
+using namespace std;
+int main()
+{
+  int n;
+  cin>>n;
+  int arr[n];
+  for(int i=0;i<=n;i++){
+  cin>>arr[i];
+      
+  }
+  //precompute 
+  map<int,int>mp;// same code for unordered map just add that word , only in unordered map , the numbers arent stored ,in sorted manner , adv of unordered map is that SC is o(1) best case and worst case o(n) 
+  for(int i=0;i<n;i++){
+      mp[arr[i]]++;
+  }
+  
+  int q;
+  cin>>q;
+  while(q--){
+      int number;
+      cin>>number;
+      cout<<mp[number]<<endl;
+  }
+  //to iterate in the map 
+  for(auto j:mp){
+      cout<<j.first<<"->"<<j.second<<endl;
+  }
+
+    return 0;
+}
+
+
+//counting sort  using hash maps 
+class Solution {
+public:
+    vector<int> sortArray(vector<int>& nums) {
+        unordered_map<int,int>mp;
+        for(int i :nums){
+            mp[i]++;
+        }
+        int min=*min_element(begin(nums),end(nums));
+        int max=*max_element(begin(nums),end(nums));
+
+        int j=0;
+
+        for(int i= min;i<=max;i++){
+
+            while(mp[i]>0){
+                nums[j]=i;
+                j++;
+                mp[i]--;
+            }
+        }
+        return nums;
+    
+}};
